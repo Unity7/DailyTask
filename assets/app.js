@@ -172,3 +172,7 @@ function isTimeWithin(time) {
 getLS();
 loadSchedule();
 checkTimeBlock();
+
+setInterval(function () {
+  checkTimeBlock();
+}, 500000);
