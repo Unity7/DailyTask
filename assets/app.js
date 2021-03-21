@@ -28,6 +28,7 @@ tasks = [
   { time: "hour-4", toDo: "" },
   { time: "hour-5", toDo: "" },
 ];
+timeCheck3 = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 timeCheck = ["9", "10", "11", "12", "1", "2", "3", "4", "5"];
 timeCheck2 = [
   "9:00 AM",
@@ -138,7 +139,16 @@ function checkTimeBlock() {
     //   $(selector).css({ "background-color": "red" });
     // }
   }
+  for (var i = 0; i < tasks.length; i++) {
+    if (currentTimeHour === timeCheck3[i]) {
+      console.log("matches");
+      selector = ".hour-" + timeCheck[i];
+      $(selector).css({ "background-color": "yellow" });
+    }
+  }
 }
+
+currentTimeHour = moment().format("H");
 
 function isTimeAfter(time) {
   return moment().isAfter(moment(time, "h:mm A"));
