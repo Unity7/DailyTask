@@ -98,13 +98,17 @@ function findArray(time) {
 
 // ------ loads the values from global variable to the schedule  ------ //
 function loadSchedule() {
-  for (var i = 0; i < tasks.length; i++) {
-    var hour = tasks[i]["time"];
-    var hourCheck = "." + hour;
-    var toDo = tasks[i]["toDo"];
+  if (tasks === null || tasks === undefined) {
+    return;
+  } else {
+    for (var i = 0; i < tasks.length; i++) {
+      var hour = tasks[i]["time"];
+      var hourCheck = "." + hour;
+      var toDo = tasks[i]["toDo"];
 
-    selector = $(hourCheck).find(".p-content");
-    selector.text(toDo);
+      selector = $(hourCheck).find(".p-content");
+      selector.text(toDo);
+    }
   }
 }
 
@@ -126,24 +130,27 @@ function getLS() {
 
 //checks to see if time block is before or after the current time
 function checkTimeBlock() {
-  for (var i = 0; i < tasks.length; i++) {
-    if (isTimeAfter(timeCheck2[i]) === true) {
-      selector = ".hour-" + timeCheck[i];
-      $(selector).css({ "background-color": "grey" });
-    } else if (isTimeAfter(timeCheck2[i]) === false) {
-      selector = ".hour-" + timeCheck[i];
-      $(selector).css({ "background-color": "green" });
+  if (tasks === null || tasks === undefined) {
+    return;
+  } else {
+    for (var i = 0; i < tasks.length; i++) {
+      if (isTimeAfter(timeCheck2[i]) === true) {
+        selector = ".hour-" + timeCheck[i];
+        $(selector).css({ "background-color": "grey" });
+      } else if (isTimeAfter(timeCheck2[i]) === false) {
+        selector = ".hour-" + timeCheck[i];
+        $(selector).css({ "background-color": "green" });
+      }
+      // else if (isTimeAfter(timeCheck2[i]) === true) {
+      //   selector = ".hour-" + timeCheck[i];
+      //   $(selector).css({ "background-color": "red" });
+      // }
     }
-    // else if (isTimeAfter(timeCheck2[i]) === true) {
-    //   selector = ".hour-" + timeCheck[i];
-    //   $(selector).css({ "background-color": "red" });
-    // }
-  }
-  for (var i = 0; i < tasks.length; i++) {
-    if (currentTimeHour === timeCheck3[i]) {
-      console.log("matches");
-      selector = ".hour-" + timeCheck[i];
-      $(selector).css({ "background-color": "yellow" });
+    for (var i = 0; i < tasks.length; i++) {
+      if (currentTimeHour === timeCheck3[i]) {
+        selector = ".hour-" + timeCheck[i];
+        $(selector).css({ "background-color": "yellow" });
+      }
     }
   }
 }
