@@ -89,9 +89,13 @@ $("tr").on("click", ".saveBtn", function () {
 //function to find the location of the time slow and replaces textInputValue
 //with its contents
 function findArray(time) {
-  for (var i = 0; i < tasks.length; i++) {
-    if (tasks[i]["time"] === time) {
-      tasks[i]["toDo"] = textInputValue;
+  if (tasks === null || tasks === undefined) {
+    return;
+  } else {
+    for (var i = 0; i < tasks.length; i++) {
+      if (tasks[i]["time"] === time) {
+        tasks[i]["toDo"] = textInputValue;
+      }
     }
   }
 }
@@ -119,7 +123,7 @@ function setLS() {
 
 //sets local storage data to global data
 function getLS() {
-  if (localStorage === null || undefined) {
+  if (localStorage.getItem("tasks") === null || undefined) {
     return;
   } else {
     tasks = JSON.parse(localStorage.getItem("tasks"));
